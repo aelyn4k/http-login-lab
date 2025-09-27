@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Masuk — HTTP Login Lab</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css?v=3" />
+</head>
+<body class="bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <main class="wrap">
+    <section class="card">
+      <header class="card-head">
+        <div class="brand">
+          <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#22d3ee"/>
+            </linearGradient></defs>
+            <path fill="url(#g1)" d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/>
+          </svg>
+          <span class="brand-text">HTTP Login Lab</span>
+        </div>
+        <h1>Masuk ke Lab</h1>
+        <p class="sub">Demo untuk melihat kredensial <em>plaintext</em> di Wireshark. <span class="badge">Insecure by design</span></p>
+      </header>
+
+      <form method="POST" action="/login" class="form" id="loginForm">
+        <label class="field">
+          <span class="field-label">Username</span>
+          <div class="input">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5 0-9 2.5-9 5.5V22h18v-2.5C21 16.5 17 14 12 14Z"/></svg>
+            <input name="username" placeholder="Masukan Username Kamu disini" autocomplete="username" required />
+          </div>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Password</span>
+          <div class="input">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 5a5 5 0 0 0-5 5v2H6a2 2 0 0 0-2 2v6h16v-6a2 2 0 0 0-2-2h-1v-2a5 5 0 0 0-5-5Z"/></svg>
+            <input id="pw" name="password" type="password" placeholder="Masukan Password Kamu disini" autocomplete="current-password" required />
+            <button type="button" class="ghost" id="togglePw" aria-label="Tampilkan password">👁</button>
+          </div>
+        </label>
+
+        <button class="btn" type="submit">Masuk</button>
+
+        <p class="hint">Akun demo: <b>student</b> / <b>wireshark</b></p>
+
+        {% if err %}
+          <div class="alert" id="errorBox">{{ err }}</div>
+        {% endif %}
+      </form>
+
+      <footer class="foot">
+        <p>⚠️ Gunakan hanya di jaringan lab lokal. HTTP tanpa enkripsi.</p>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // toggle password
+    const pw = document.getElementById('pw');
+    const t = document.getElementById('togglePw');
+    t.addEventListener('click', () => {
+      const isPw = pw.type === 'password';
+      pw.type = isPw ? 'text' : 'password';
+      t.textContent = isPw ? '🙈' : '👁';
+      t.setAttribute('aria-label', isPw ? 'Sembunyikan password' : 'Tampilkan password');
+    });
+
+    // efek shake untuk error inline
+    const eb = document.getElementById('errorBox');
+    if (eb){
+      eb.classList.add('shake');
+      setTimeout(()=>eb.classList.remove('shake'), 500);
+    }
+  </script>
+</body>
+</html>

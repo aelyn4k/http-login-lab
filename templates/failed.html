@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login Gagal — HTTP Login Lab</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css?v=3" />
+</head>
+<body class="bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <main class="wrap">
+    <section class="card">
+      <header class="card-head center">
+        <div class="fail-icon">✕</div>
+        <h1>Login Gagal</h1>
+        <p class="sub">{{ err }}</p>
+      </header>
+
+      <div class="tips">
+        <ul>
+          <li>Pastikan <b>username</b> dan <b>password</b> sesuai.</li>
+          <li>Untuk lab: <code>student</code> / <code>wireshark</code>.</li>
+          <li>Coba lagi dan lihat payload POST di Wireshark.</li>
+        </ul>
+      </div>
+
+      <div class="actions row">
+        <a class="link" href="/login">← Coba Lagi</a>
+        <a class="link ghost-strong" href="#" onclick="history.back();return false;">Kembali</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
