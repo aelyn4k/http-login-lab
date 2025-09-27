@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — HTTP Login Lab</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css?v=4" />
+</head>
+<body class="bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <main class="wrap">
+    <section class="card dashboard">
+      <header class="dash-head">
+        <div class="dash-meta">
+          <span class="badge">Lab Session</span>
+          <h1>Halo, {{ username }} 👋</h1>
+          <p class="sub">Anda sudah masuk ke lingkungan lab HTTP. Gunakan ruang ini untuk mengeksplorasi bagaimana kredensial berpindah di jaringan tanpa enkripsi.</p>
+          <p class="sub highlight">Anda login dengan username <strong>{{ username }}</strong>.</p>
+        </div>
+        <div class="pill">
+          <span class="pill-label">Cookie sesi</span>
+          <code class="pill-value">{{ cookie }}</code>
+        </div>
+      </header>
+
+      <section class="module-grid">
+        {% for mod in modules %}
+          <article class="module-card">
+            <div class="module-icon">{{ mod.icon }}</div>
+            <h2>{{ mod.title }}</h2>
+            <p>{{ mod.desc }}</p>
+          </article>
+        {% endfor %}
+      </section>
+
+      <section class="dash-section">
+        <h2>Langkah praktikum</h2>
+        <ol class="step-list">
+          {% for step in steps %}
+            <li>{{ step }}</li>
+          {% endfor %}
+        </ol>
+      </section>
+
+      <section class="dash-section resources">
+        <h2>Referensi lanjutan</h2>
+        <ul class="resource-list">
+          {% for item in resources %}
+            <li>
+              <span class="resource-type">{{ item.type }}</span>
+              <a href="{{ item.href }}" target="_blank" rel="noopener">{{ item.label }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <footer class="dash-foot">
+        <div class="foot-note">
+          <strong>Tips:</strong> coba ulangi login dua kali dan bandingkan timestamp paket untuk melihat pola replay.
+        </div>
+        <a class="ghost-strong" href="/login">Keluar dan ulangi login</a>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
