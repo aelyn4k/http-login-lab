@@ -10,7 +10,7 @@ Aplikasi Flask sederhana untuk praktikum keamanan jaringan. Mahasiswa dapat meng
 ## Instalasi
 1. **Clone & masuk ke folder proyek**
    ```bash
-   git clone https://github.com/zzkydev/http-login-lab.git
+   git clone https://github.com/aelyn4k/http-login-lab.git
    cd "Login Sederhana HTTP"
    ```
 2. **(Opsional) Buat virtualenv**
